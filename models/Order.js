@@ -13,9 +13,11 @@ const orderSchema = new mongoose.Schema({
     city: String,
     postalCode: String,
     country: String,
+    mobileNumber: String,  // ✅ added
   },
   paymentMethod: { type: String, required: true },
   totalPrice: { type: Number, required: true },
 }, { timestamps: true });
+
 
 export default mongoose.model('Order', orderSchema);
