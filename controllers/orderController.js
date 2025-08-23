@@ -67,3 +67,15 @@ export const getMyOrders = async (req, res) => {
   }
 };
 
+export const getCustomerOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({})
+      .populate("user", "name email") // ✅ show user info
+      .populate("orderItems.product", "name price"); // ✅ show product info
+
+    res.json(orders);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
